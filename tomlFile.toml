@@ -1,0 +1,14 @@
+title = "challenge-backend"
+
+[server.app]
+port = 4000
+
+[database.mongo]
+server = "127.0.0.1"
+port =  "27017"
+user = "root"
+password = "root"
+database = "challenge_cars"
+
+[jwt]
+key = "sJJc3N1ZXIiOiJJ"
