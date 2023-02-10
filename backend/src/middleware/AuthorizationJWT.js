@@ -4,10 +4,11 @@ const jwt = require("jsonwebtoken")
 const chavePrivada = process.env.JWT_KEY
 
 class JwtRole {
-    generate(nome, email, id) {
+    generate(nome, usuario, senha, id) {
         const dadosUsuario = {
             nome: nome,
-            email: email,
+            usuario: usuario,
+            senha: senha,
             id: id
         };
         const result = jwt.sign(dadosUsuario, chavePrivada)
@@ -20,6 +21,17 @@ class JwtRole {
             return result
         } catch {
             return false
+        }
+        
+    }
+
+    testValidate (req, res, next) {
+        try {
+            const token = req.headers["authorization"]
+            jwt.verify(token, chavePrivada)
+            next()
+        } catch {
+            return res.status(500).json("invalid authorization")
         }
         
     }

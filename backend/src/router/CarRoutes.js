@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
+const jwtValidation = require('../middleware/AuthorizationJWT')
+
 const multer = require("multer");
 const uploadConfig = require('../middleware/UploadImg')
 const upload = multer({ storage: uploadConfig.storage });
@@ -8,6 +10,6 @@ const upload = multer({ storage: uploadConfig.storage });
 const CarController = require('../controller/CarController')
 
 router.get('/all', CarController.all)
-router.post('/create', upload.single("foto"), CarController.create)
+router.post('/create', jwtValidation.testValidate, upload.single("foto"), CarController.create)
 
 module.exports = router;
