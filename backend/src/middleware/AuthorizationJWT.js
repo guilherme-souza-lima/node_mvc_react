@@ -1,7 +1,7 @@
+require('dotenv').config()
 const jwt = require("jsonwebtoken")
-const env = require('../config/configEnv')
 
-const chavePrivada = env.jwt.key
+const chavePrivada = process.env.JWT_KEY
 
 class JwtRole {
     generate(nome, email, id) {

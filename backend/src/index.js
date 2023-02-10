@@ -1,6 +1,6 @@
+require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
-const env = require('./config/configEnv')
 const server = express()
 
 server.use(cors())
@@ -11,11 +11,11 @@ server.use('/car',  CarRoutes);
 
 server.get("/status",(req, res) => {
     res.json({ 
-        status: env.title
+        status: "status ok."
     })
 })
     
 
-server.listen(env.server.app.port, () => {
+server.listen(process.env.APP_PORT, () => {
     console.log('API ONLINE')
 });
