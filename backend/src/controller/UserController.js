@@ -22,7 +22,7 @@ class UserController {
         })
         .then( response => {
             if (response.length == 0)
-            return res.status(200).json("Não Encontrado.")
+            return res.status(404).json("Não Encontrado.")
 
             const token = JwtRole.generate(response[0].nome, response[0].usuario, response[0].senha, response[0]._id.toString())
             return res.status(200).json(token)
