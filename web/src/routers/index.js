@@ -9,9 +9,9 @@ export default function AppRoutes(){
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/car" element={<Car />} />
+                <Route path="/"         element={<Home  />} />
+                <Route path="/login"    element={<Login />} />
+                <Route path="/car"      element={<Car   />} />
             </Routes>
         </BrowserRouter>
     )

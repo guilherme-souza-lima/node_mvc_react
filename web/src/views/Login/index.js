@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from "react-router-dom";
 import * as S from './styles'
 
 import api from '../../services/api'
@@ -15,10 +16,11 @@ function Login() {
             usuario,
             senha
         }).then(response => {
-            console.log(response.data)
+            localStorage.setItem("token",response.data)
+            window.location = "/car"
         }).catch(error => {
             alert(error.response.data)
-        })
+        }) 
     }
 
     return (

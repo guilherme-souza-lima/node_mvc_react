@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import * as S from './styles'
 
 
@@ -14,6 +14,12 @@ function CarRegistration() {
     const [foto, setFoto] = useState()
 
     async function salvar() {}
+
+    useEffect(() =>{
+        const token = localStorage.getItem("token")
+        if (!token)
+        window.location = "/"
+    })
 
     return (
         <S.Container>
