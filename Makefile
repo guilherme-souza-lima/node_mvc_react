@@ -1,7 +1,10 @@
 #!make
 
-run-app:
-	node backend/src/index.js
+up:
+	docker-compose up -d
 
-dev-app:
+run-app:
 	nodemon backend/src/index.js
+
+run-web:
+	cd web/ && npm start
