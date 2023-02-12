@@ -3,6 +3,7 @@ import * as S from './styles'
 
 function CarCard({nome, modelo, preco, foto}) {
     const img = "./imgs/"+foto
+    const valor = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(preco)
     return (
         <S.Container>
             <S.TopCard>
@@ -11,7 +12,7 @@ function CarCard({nome, modelo, preco, foto}) {
                 </S.TopCard>
                 <S.BottomCard>
                     <strong>{modelo}</strong>
-                    <span>R${preco}</span>
+                    <span>{valor}</span>
                 </S.BottomCard>
         </S.Container>
     )

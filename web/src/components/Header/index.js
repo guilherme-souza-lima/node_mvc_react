@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import logo from '../../assets/img/default_transparent_765x625.png'
 
-function Header() {
+function Header({panelExit}) {
     return (
         <S.Container>
             <S.LeftSide>

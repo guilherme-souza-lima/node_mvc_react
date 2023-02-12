@@ -32,6 +32,12 @@ export const TopCard = styled.div`
         width: 90%;
         border-radius: 10px;
     }
+
+    h3 {
+        margin-top: 5px;
+        font-size: 20px;
+    }
+
 `
 
 export const BottomCard = styled.div`

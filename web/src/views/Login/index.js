@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
 import * as S from './styles'
 
 import api from '../../services/api'
@@ -17,11 +16,17 @@ function Login() {
             senha
         }).then(response => {
             localStorage.setItem("token",response.data)
-            window.location = "/car"
+            window.location = "/adm"
         }).catch(error => {
             alert(error.response.data)
         }) 
     }
+
+    useEffect(() =>{
+        const token = localStorage.getItem("token")
+        if (token)
+        window.location = "/adm"
+    })
 
     return (
         <S.Container>
