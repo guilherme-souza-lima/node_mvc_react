@@ -24,7 +24,7 @@ function Panel() {
 
     useEffect(() =>{
         loadCars()
-    })
+    }, [])
 
     return (
         <S.Container>

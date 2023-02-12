@@ -26,7 +26,7 @@ function Login() {
         const token = localStorage.getItem("token")
         if (token)
         window.location = "/adm"
-    })
+    }, [])
 
     return (
         <S.Container>
