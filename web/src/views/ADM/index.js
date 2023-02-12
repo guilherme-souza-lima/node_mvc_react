@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import * as S from './styles'
 
+import api from '../../services/api'
 
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -11,15 +12,31 @@ function CarRegistration() {
     const [modelo, setModelo] = useState()
     const [ano, setAno] = useState()
     const [preco, setPreco] = useState()
-    const [foto, setFoto] = useState()
+    const [foto, setFoto] = useState(null);
 
-    async function salvar() {}
+    async function salvar() {
+        // const preco = Number(preco);
+        api.defaults.headers.common['Authorization'] = localStorage.getItem("token");
+        api.defaults.headers.post['Content-Type'] = 'multipart/form-data'
+        await api.post('/car/create', {
+            nome,
+            marca,
+            modelo,
+            ano,
+            foto,
+            preco
+        }).then(response => {
+            alert(response.data.statusText)
+        }).catch(error => {
+            alert(error.response.data)
+        }) 
+    }
 
     useEffect(() =>{
         const token = localStorage.getItem("token")
         if (!token)
         window.location = "/"
-    })
+    }, [foto])
 
     return (
         <S.Container>
@@ -50,7 +67,7 @@ function CarRegistration() {
                     
                     <span>Foto</span>
                     <input type='file' placeholder='uma foto do veículo...'
-                        onChange={e => setFoto(e.target.value)} value={foto}/>
+                        onChange={(e) => setFoto(e.target.files[0])} value={""}/>
 
                 </S.Input>
                 <S.Save>

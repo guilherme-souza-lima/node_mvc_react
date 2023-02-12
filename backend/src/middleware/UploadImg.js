@@ -2,7 +2,7 @@ const path = require("path");
 const { v4 } = require("uuid");
 const multer = require("multer");
 
-const uploadFolder = path.resolve(__dirname, "./../../../uploads");
+const uploadFolder = path.resolve(__dirname, "./../../../web/public/imgs");
 
 const uploadConfig = {
   uploadFolder,

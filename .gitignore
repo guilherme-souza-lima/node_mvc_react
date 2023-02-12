@@ -1,4 +1,4 @@
 backend/node_modules
 web/node_modules
 data
-uploads
+web/public/imgs
