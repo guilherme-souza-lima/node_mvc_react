@@ -8,3 +8,9 @@ run-app:
 
 run-web:
 	cd web/ && npm start
+
+install-app:
+	cd backend/ && npm install
+
+install-web:
+	cd web/ && npm install
