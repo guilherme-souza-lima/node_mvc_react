@@ -15,7 +15,6 @@ function CarRegistration() {
     const [foto, setFoto] = useState(null);
 
     async function salvar() {
-        // const preco = Number(preco);
         api.defaults.headers.common['Authorization'] = localStorage.getItem("token");
         api.defaults.headers.post['Content-Type'] = 'multipart/form-data'
         await api.post('/car/create', {
