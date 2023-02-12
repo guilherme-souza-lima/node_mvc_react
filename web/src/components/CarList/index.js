@@ -3,11 +3,26 @@ import Table from 'react-bootstrap/Table'
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
+import api from '../../services/api'
+
 import * as S from './styles'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function CarList({cars}) {
     const img = "./imgs/"
+
+    async function DeleteCard(id, foto) {
+        console.log(foto)
+        api.defaults.headers.common['Authorization'] = localStorage.getItem("token");
+        await api.delete('/car/'+id
+        ).then(response => {
+            console.log(response)
+            alert('OK')
+        }).catch(error => {
+            console.log(error)
+            alert('Error')
+        })
+    }
    
     return (
         <S.Container>
@@ -33,7 +48,7 @@ function CarList({cars}) {
                             <td>
                                 <DropdownButton id="dropdown-basic-button">
                                     <Dropdown.Item href="#">Editar</Dropdown.Item>
-                                    <Dropdown.Item href="#/">Deletar</Dropdown.Item>
+                                    <Dropdown.Item href="#" onClick={() => DeleteCard(t._id)}>Deletar</Dropdown.Item>
                                 </DropdownButton>
                             </td>
                         </tr>   

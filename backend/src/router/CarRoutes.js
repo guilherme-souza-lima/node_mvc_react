@@ -11,5 +11,6 @@ const CarController = require('../controller/CarController')
 
 router.get('/all', CarController.all)
 router.post('/create', jwtValidation.testValidate, upload.single("foto"), CarController.create)
+router.delete('/:id', jwtValidation.testValidate, CarController.delete)
 
 module.exports = router;
