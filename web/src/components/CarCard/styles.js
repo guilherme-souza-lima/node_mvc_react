@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
     width: 250px;
-    height: 200px;
+    height: 250px;
     box-shadow: -3px 1px 13px -2px rgba(0,0,0,0.73);
     border-radius: 10px;
 
@@ -29,7 +29,8 @@ export const TopCard = styled.div`
     flex-direction: column;
 
     img {
-        width: 50%;
+        width: 90%;
+        border-radius: 10px;
     }
 `
 

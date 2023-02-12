@@ -1,16 +1,17 @@
 import React from 'react';
 import * as S from './styles'
 
-function CarCard() {
+function CarCard({nome, modelo, preco, foto}) {
+    const img = "./imgs/"+foto
     return (
         <S.Container>
             <S.TopCard>
-                    <img src='./imgs/download.jpeg' alt="Foto" />
-                    <h3>NOME CARRO</h3>
+                    <img src={img} alt="Foto" />
+                    <h3>{nome}</h3>
                 </S.TopCard>
                 <S.BottomCard>
-                    <strong>MODELO</strong>
-                    <span>R$ 25.000,00</span>
+                    <strong>{modelo}</strong>
+                    <span>R${preco}</span>
                 </S.BottomCard>
         </S.Container>
     )

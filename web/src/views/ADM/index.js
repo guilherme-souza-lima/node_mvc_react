@@ -25,7 +25,7 @@ function CarRegistration() {
             foto,
             preco
         }).then(response => {
-            alert(response.data.statusText)
+            alert(response.statusText)
         }).catch(error => {
             alert(error.response.data)
         }) 
