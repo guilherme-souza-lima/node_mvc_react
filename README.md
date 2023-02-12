@@ -23,3 +23,9 @@ em seguida em outro terminal...
 ```sh
 make run-web
 ```
+
+### `Quarto passo` vamos criar um usuário administrador.
+```sh
+make insert-adm
+```
+Agora você pode logar com o usuário `adm`, e senha `adm`

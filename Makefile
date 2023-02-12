@@ -14,3 +14,6 @@ install-app:
 
 install-web:
 	cd web/ && npm install
+
+insert-adm:
+	curl --location --request POST 'localhost:4000/user/create' --header 'Content-Type: application/json' --data-raw '{"nome":"adm","usuario":"adm","senha":"adm"}' 
