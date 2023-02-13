@@ -8,4 +8,9 @@ export const Container = styled.div`
     img {
         width: 150px;
     }
+
+    a {
+        text-decoration: none;
+        color: #000;
+    }
 `

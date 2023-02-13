@@ -2,6 +2,7 @@ import React from 'react';
 import Table from 'react-bootstrap/Table'
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import { Link } from 'react-router-dom'
 
 import api from '../../services/api'
 
@@ -11,16 +12,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function CarList({cars}) {
     const img = "./imgs/"
 
-    async function EditarCard(id) {
-        console.log(id)
-    }
-
     async function DeleteCard(id) {
         api.defaults.headers.common['Authorization'] = localStorage.getItem("token");
         await api.delete('/car/'+id
         ).then(response => {
             console.log(response)
-            alert('OK')
+            alert('Ok')
+            window.location = "/adm"
         }).catch(error => {
             console.log(error)
             alert('Error')
@@ -50,7 +48,7 @@ function CarList({cars}) {
                             <td>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(t.preco)}</td>
                             <td>
                                 <DropdownButton id="dropdown-basic-button">
-                                    <Dropdown.Item href="#" onClick={() => EditarCard(t._id)}>Editar</Dropdown.Item>
+                                    <Dropdown.Item href="#" ><Link to={`/create/${t._id}`}>Editar</Link></Dropdown.Item>
                                     <Dropdown.Item href="#" onClick={() => DeleteCard(t._id)}>Deletar</Dropdown.Item>
                                 </DropdownButton>
                             </td>

@@ -24,7 +24,7 @@ function Home() {
 
     return (
         <S.Container>
-            <Header />
+            <Header adm={false} />
 
             <S.Content>
                 {cars.map(t => (

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { useParams } from "react-router-dom";
 import * as S from './styles'
 
 import api from '../../services/api'
 
 function CarRegistration() {
+    const params = useParams();
     const [nome, setNome] = useState()
     const [marca, setMarca] = useState()
     const [modelo, setModelo] = useState()
@@ -11,28 +13,59 @@ function CarRegistration() {
     const [preco, setPreco] = useState()
     const [foto, setFoto] = useState(null);
 
+    async function LoadCarDetails() {
+        api.defaults.headers.common['Authorization'] = localStorage.getItem("token");
+        await api.get(`/car/${params.id}`)
+        .then(response => {
+            setNome(response.data.nome)
+            setMarca(response.data.marca)
+            setModelo(response.data.modelo)
+            setAno(response.data.ano)
+            setPreco(response.data.preco)
+            setFoto(response.data.foto)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+
     async function salvar() {
         api.defaults.headers.common['Authorization'] = localStorage.getItem("token");
         api.defaults.headers.post['Content-Type'] = 'multipart/form-data'
-        await api.post('/car/create', {
-            nome,
-            marca,
-            modelo,
-            ano,
-            foto,
-            preco
-        }).then(response => {
-            alert(response.statusText)
-            window.location = "/adm"
-        }).catch(error => {
-            alert(error.response.data)
-        }) 
+        if (params.id) {
+            await api.put('/car/'+params.id, {
+                nome,
+                marca,
+                modelo,
+                ano,
+                foto,
+                preco
+            }).then(response => {
+                alert(response.statusText)
+                window.location = "/adm"
+            }).catch(error => {
+                alert(error.response.data)
+            })
+        } else {
+            await api.post('/car/create', {
+                nome,
+                marca,
+                modelo,
+                ano,
+                foto,
+                preco
+            }).then(response => {
+                alert(response.statusText)
+                window.location = "/adm"
+            }).catch(error => {
+                alert(error.response.data)
+            })  
+        }
+        
     }
 
     useEffect(() =>{
-        const token = localStorage.getItem("token")
-        if (!token)
-        window.location = "/"
+        LoadCarDetails()
     }, [foto])
 
     return (
