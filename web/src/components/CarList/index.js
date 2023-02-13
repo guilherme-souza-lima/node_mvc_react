@@ -11,8 +11,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function CarList({cars}) {
     const img = "./imgs/"
 
-    async function DeleteCard(id, foto) {
-        console.log(foto)
+    async function EditarCard(id) {
+        console.log(id)
+    }
+
+    async function DeleteCard(id) {
         api.defaults.headers.common['Authorization'] = localStorage.getItem("token");
         await api.delete('/car/'+id
         ).then(response => {
@@ -47,7 +50,7 @@ function CarList({cars}) {
                             <td>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(t.preco)}</td>
                             <td>
                                 <DropdownButton id="dropdown-basic-button">
-                                    <Dropdown.Item href="#">Editar</Dropdown.Item>
+                                    <Dropdown.Item href="#" onClick={() => EditarCard(t._id)}>Editar</Dropdown.Item>
                                     <Dropdown.Item href="#" onClick={() => DeleteCard(t._id)}>Deletar</Dropdown.Item>
                                 </DropdownButton>
                             </td>
